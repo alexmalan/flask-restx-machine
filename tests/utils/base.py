@@ -10,7 +10,9 @@ from apps.api import blueprint, models
 
 
 class BaseTestCase(unittest.TestCase):
-
+    """
+    Base test class
+    """
     def setUp(self):
         """
         Set up the test environment
