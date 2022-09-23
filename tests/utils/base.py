@@ -7,6 +7,7 @@ from apps.api import blueprint, models
 
 
 class BaseTestCase(unittest.TestCase):
+
     def setUp(self):
         self.app = create_app("testing")
         self.app.register_blueprint(blueprint)
