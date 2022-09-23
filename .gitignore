@@ -1,0 +1,20 @@
+### Python ###
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+.env
+.env.*
+
+### Python venv ###
+venv/
+migrations/
+
+
+### Flask ###
+*.log
+*.pot
+*.pyc
+*.db
+
+### PyCharm ###
+*.idea/
