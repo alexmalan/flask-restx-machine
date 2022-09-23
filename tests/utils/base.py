@@ -1,6 +1,4 @@
-"""
-Base class for testing
-"""
+"""Base class for testing"""
 import unittest
 
 import pytest
