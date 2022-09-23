@@ -1,6 +1,4 @@
-"""
-Product related model
-"""
+"""Product related model"""
 from apps.extensions import db
 
 from .audit import BaseModel
@@ -21,7 +19,5 @@ class Product(BaseModel):
     sellerId = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
 
     def __repr__(self):
-        """
-        Product representation
-        """
+        """Product representation"""
         return self.productName

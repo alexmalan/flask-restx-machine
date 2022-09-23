@@ -1,6 +1,4 @@
-"""
-Main Application
-"""
+"""Main Application"""
 import os
 
 import pytest
@@ -19,9 +17,7 @@ cli = FlaskGroup(app)
 
 @cli.command("test")
 def test():
-    """
-    Runs the unit tests.
-    """
+    """Runs the unit tests."""
     pytest.main(args=["-v", "tests"])
 
 

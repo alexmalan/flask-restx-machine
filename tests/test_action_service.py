@@ -11,9 +11,7 @@ class TestActionController(BaseTestCase):
     # # BUY
     # #######################################################
     def test_buy_product_success(self):
-        """
-        Test buying a product successfully
-        """
+        """Test buying a product successfully"""
         user = User.query.filter_by(id=100).first()
         deposit_amount({"amount": 100}, user)
         self.assertEqual(user.deposit, 100)
@@ -26,9 +24,7 @@ class TestActionController(BaseTestCase):
         self.assertEqual(change, user.deposit)
 
     def test_buy_product_wrong_user_type(self):
-        """
-        Test buy product with wrong user type - SELLER INSTEAD OF BUYER
-        """
+        """Test buy product with wrong user type - SELLER INSTEAD OF BUYER"""
         user = User.query.filter_by(id=101).first()
         deposit_status = deposit_amount({"amount": 100}, user)
         self.assertEqual(user.deposit, 0)
@@ -42,9 +38,7 @@ class TestActionController(BaseTestCase):
         self.assertEqual(change, False)
 
     def test_buy_product_non_existent_product(self):
-        """
-        Test buying a product that does not exist
-        """
+        """Test buying a product that does not exist"""
         user = User.query.filter_by(id=100).first()
         deposit_status = deposit_amount({"amount": 100}, user)
         self.assertEqual(user.deposit, 100)
@@ -57,9 +51,7 @@ class TestActionController(BaseTestCase):
     # # DEPOSIT
     # #######################################################
     def test_deposit_success(self):
-        """
-        Test depositing successfully
-        """
+        """Test depositing successfully"""
         user = User.query.filter_by(id=100).first()
 
         before_deposit = user.deposit
@@ -70,9 +62,7 @@ class TestActionController(BaseTestCase):
         self.assertEqual(before_deposit, after_deposit - 100)
 
     def test_deposit_invalid_input(self):
-        """
-        Test depositing an invalid input number
-        """
+        """Test depositing an invalid input number"""
         user = User.query.filter_by(role="BUYER").first()
         user_id = user.id
 
@@ -82,9 +72,7 @@ class TestActionController(BaseTestCase):
         self.assertEqual(deposit_status, False)
 
     def test_deposit_invalid_user_type(self):
-        """
-        Test depositing with an invalid user type
-        """
+        """Test depositing with an invalid user type"""
         user = User.query.filter_by(role="SELLER").first()
         user_id = user.id
 
@@ -94,9 +82,7 @@ class TestActionController(BaseTestCase):
         self.assertEqual(deposit_status, False)
 
     def test_deposit_invalid_input_instance_type(self):
-        """
-        Test depositing an invalid input instance type
-        """
+        """Test depositing an invalid input instance type"""
         user = User.query.filter_by(role="BUYER").first()
         user_id = user.id
 
@@ -110,9 +96,7 @@ class TestActionController(BaseTestCase):
     #######################################################
 
     def test_reset_success(self):
-        """
-        Test resetting successfully
-        """
+        """Test resetting successfully"""
         user = User.query.filter_by(role="BUYER").first()
         user_id = user.id
 

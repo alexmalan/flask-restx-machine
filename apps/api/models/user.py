@@ -1,6 +1,4 @@
-"""
-User related model
-"""
+"""User related model"""
 
 import enum
 
@@ -12,18 +10,14 @@ from .audit import BaseModel
 
 
 class UserRole(enum.Enum):
-    """
-    User roles enum definition
-    """
+    """User roles enum definition"""
 
     SELLER = "SELLER"
     BUYER = "BUYER"
 
 
 class User(BaseModel, UserMixin):
-    """
-    User database model
-    """
+    """User database model"""
 
     __tablename__ = "user"
 
@@ -34,7 +28,5 @@ class User(BaseModel, UserMixin):
     role = db.Column(db.Enum(UserRole), default="BUYER")
 
     def __repr__(self):
-        """
-        User representation
-        """
+        """User representation"""
         return f"{self.username} : {self.role}"

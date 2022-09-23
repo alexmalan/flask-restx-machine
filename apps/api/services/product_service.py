@@ -1,6 +1,4 @@
-"""
-Product related functions - services
-"""
+"""Product related functions - services"""
 from apps.api.models import Product
 from apps.extensions import db
 
@@ -8,9 +6,7 @@ from .user_service import check_user_role
 
 
 def list_products():
-    """
-    List products
-    """
+    """List products"""
     return Product.query.all()
 
 
@@ -54,9 +50,8 @@ def update_product(payload=None, user=None):
     if payload is None or not isinstance(payload, dict):
         return None
 
-    product = Product.query.filter_by(
-        id=payload["product_id"], sellerId=user.id
-    ).first()
+    product = Product.query.filter_by(id=payload["product_id"],
+                                      sellerId=user.id).first()
     if product:
         if payload.get("productName"):
             if not isinstance(payload["productName"], str):
@@ -93,9 +88,8 @@ def delete_product(payload=None, user=None):
     if payload is None or not isinstance(payload, dict):
         return None
 
-    product = Product.query.filter_by(
-        id=payload["product_id"], sellerId=user.id
-    ).first()
+    product = Product.query.filter_by(id=payload["product_id"],
+                                      sellerId=user.id).first()
 
     if product:
         db.session.delete(product)
