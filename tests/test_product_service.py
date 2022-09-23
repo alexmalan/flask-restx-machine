@@ -1,3 +1,6 @@
+"""
+Products tests
+"""
 from apps.api.models import Product, User
 from apps.api.services import (create_product, delete_product, list_products,
                                update_product)
