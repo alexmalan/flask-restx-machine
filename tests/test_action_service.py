@@ -5,9 +5,7 @@ from tests.utils.base import BaseTestCase
 
 
 class TestActionController(BaseTestCase):
-    """
-    Tests for actions
-    """
+    """Tests for actions"""
 
     # #######################################################
     # # BUY
