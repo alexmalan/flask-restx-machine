@@ -6,7 +6,6 @@ from dotenv import load_dotenv
 basedir = path.dirname(path.abspath(__file__))
 ENV = environ.get("FLASK_ENV", "default")
 
-
 if ENV == "development":
     dotenv_file = ".env.development"
 else:
@@ -53,6 +52,6 @@ class TestConfig(Config):
     PRESERVE_CONTEXT_ON_EXCEPTION = False
 
 
-config_by_name = dict(
-    development=DevelopmentConfig, default=DevelopmentConfig, testing=TestConfig
-)
+config_by_name = dict(development=DevelopmentConfig,
+                      default=DevelopmentConfig,
+                      testing=TestConfig)
