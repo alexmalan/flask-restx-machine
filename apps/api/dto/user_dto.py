@@ -15,15 +15,19 @@ class UserDto:
     user = api.model(
         "User",
         {
-            "username": fields.String(
+            "username":
+            fields.String(
                 description="User username",
                 required=True,
                 attribute="username",
             ),
-            "password": fields.String(
-                description="User password", required=True, attribute="password"
-            ),
-            "deposit": fields.Integer(description="User deposit", attribute="deposit"),
-            "role": fields.String(description="User role", attribute="role"),
+            "password":
+            fields.String(description="User password",
+                          required=True,
+                          attribute="password"),
+            "deposit":
+            fields.Integer(description="User deposit", attribute="deposit"),
+            "role":
+            fields.String(description="User role", attribute="role"),
         },
     )
