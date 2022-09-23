@@ -1,6 +1,4 @@
-"""
-Action related functions - services
-"""
+"""Action related functions - services"""
 
 from apps.api.models import Product
 from apps.extensions import db

@@ -1,13 +1,10 @@
-"""
-Flask configuration.
-"""
+"""Flask configuration."""
 from os import environ, path
 
 from dotenv import load_dotenv
 
 basedir = path.dirname(path.abspath(__file__))
 ENV = environ.get("FLASK_ENV", "default")
-
 
 if ENV == "development":
     dotenv_file = ".env.development"
@@ -18,9 +15,7 @@ load_dotenv(path.join(basedir, dotenv_file))
 
 
 class Config:
-    """
-    Configuration class.
-    """
+    """Configuration class."""
 
     DEBUG = False
     TESTING = False
@@ -38,17 +33,13 @@ class Config:
 
 
 class DevelopmentConfig(Config):
-    """
-    Development configuration class.
-    """
+    """Development configuration class."""
 
     SECRET_KEY = environ.get("SECRET_KEY")
 
 
 class TestConfig(Config):
-    """
-    Testing configuration class.
-    """
+    """Testing configuration class."""
 
     TESTING = True
     SECRET_KEY = environ.get("SECRET_KEY")
@@ -61,6 +52,6 @@ class TestConfig(Config):
     PRESERVE_CONTEXT_ON_EXCEPTION = False
 
 
-config_by_name = dict(
-    development=DevelopmentConfig, default=DevelopmentConfig, testing=TestConfig
-)
+config_by_name = dict(development=DevelopmentConfig,
+                      default=DevelopmentConfig,
+                      testing=TestConfig)

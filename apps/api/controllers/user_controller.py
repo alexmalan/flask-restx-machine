@@ -1,6 +1,4 @@
-"""
-User controller
-"""
+"""User controller"""
 from flask import request
 from flask_login import current_user, login_required, login_user, logout_user
 from flask_restx import Resource
@@ -37,18 +35,15 @@ class UserRegisterCollection(Resource):
     )
     @api.expect(_user)
     def post(self):
-        """
-        Register User
-        """
+        """Register User"""
         payload = request.get_json()
         register = register_user(payload)
         if register:
             return response_with(
-                resp.SUCCESS_201, value={"response": "User created successfully"}
-            )
-        return response_with(
-            resp.BAD_REQUEST_400, value={"response": "User already exists"}
-        )
+                resp.SUCCESS_201,
+                value={"response": "User created successfully"})
+        return response_with(resp.BAD_REQUEST_400,
+                             value={"response": "User already exists"})
 
 
 @api.route("/login")
@@ -66,9 +61,7 @@ class UserLoginCollection(Resource):
 
     @login_manager.user_loader
     def load_user(user_id):
-        """
-        Check if user is logged in on every page load.
-        """
+        """Check if user is logged in on every page load."""
         return User.query.get(int(user_id))
 
     @api.doc(
@@ -81,14 +74,13 @@ class UserLoginCollection(Resource):
     )
     @api.expect(_user)
     def post(self):
-        """
-        Login user.
-        """
+        """Login user."""
         if current_user.is_authenticated:
             return response_with(
                 resp.BAD_REQUEST_400,
                 value={
-                    "response": "There is already an active session using your account"
+                    "response":
+                    "There is already an active session using your account"
                 },
             )
 
@@ -97,9 +89,8 @@ class UserLoginCollection(Resource):
         if user:
             if bcrypt.check_password_hash(user.password, payload["password"]):
                 login_user(user)
-                return response_with(
-                    resp.SUCCESS_200, value={"response": "User logged in"}
-                )
+                return response_with(resp.SUCCESS_200,
+                                     value={"response": "User logged in"})
         return response_with(
             resp.UNAUTHORIZED_403,
             value={"response": "Invalid username or password"},
@@ -113,16 +104,15 @@ class UserLoginCollection(Resource):
         },
     )
     def get(self):
-        """
-        Returns user
-        """
+        """Returns user"""
         if current_user.is_anonymous or not current_user.is_authenticated:
-            return response_with(
-                resp.BAD_REQUEST_400, value={"response": "No user logged in"}
-            )
+            return response_with(resp.BAD_REQUEST_400,
+                                 value={"response": "No user logged in"})
         return response_with(
             resp.SUCCESS_200,
-            value={"response": f"{current_user.username} : {current_user.role}"},
+            value={
+                "response": f"{current_user.username} : {current_user.role}"
+            },
         )
 
 
@@ -147,17 +137,13 @@ class UserLogoutCollection(Resource):
     )
     @login_required
     def post(self):
-        """
-        Logout user.
-        """
+        """Logout user."""
         log_status = logout_user()
         if log_status:
-            return response_with(
-                resp.SUCCESS_200, value={"response": "User logged out"}
-            )
-        return response_with(
-            resp.BAD_REQUEST_400, value={"response": "No user logged in"}
-        )
+            return response_with(resp.SUCCESS_200,
+                                 value={"response": "User logged out"})
+        return response_with(resp.BAD_REQUEST_400,
+                             value={"response": "No user logged in"})
 
 
 @api.route("/remove")
@@ -181,9 +167,7 @@ class UserDeleteCollection(Resource):
     )
     @login_required
     def delete(self):
-        """
-        Remove current user from the system
-        """
+        """Remove current user from the system"""
         user = User.query.filter_by(username=current_user.username).first()
 
         if user:
@@ -192,5 +176,7 @@ class UserDeleteCollection(Resource):
 
             logout_user()
 
-            return response_with(resp.SUCCESS_200, value={"response": "User Removed"})
-        return response_with(resp.BAD_REQUEST_400, value={"response": "User not found"})
+            return response_with(resp.SUCCESS_200,
+                                 value={"response": "User Removed"})
+        return response_with(resp.BAD_REQUEST_400,
+                             value={"response": "User not found"})

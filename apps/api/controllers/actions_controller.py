@@ -1,6 +1,4 @@
-"""
-Action related endpoints
-"""
+"""Action related endpoints"""
 
 from flask import request
 from flask_login import current_user, login_required
@@ -8,8 +6,12 @@ from flask_restx import Resource
 
 from apps.api.dto import ActionsDto, ProductDto
 from apps.api.models import User
-from apps.api.services import (buy_product, check_user_role, deposit_amount,
-                               reset_deposit)
+from apps.api.services import (
+    buy_product,
+    check_user_role,
+    deposit_amount,
+    reset_deposit,
+)
 from apps.api.utils import response_with
 from apps.api.utils import responses as resp
 
@@ -30,13 +32,15 @@ class BuyCollection(Resource):
 
     @api.doc(
         "Buy action",
-        responses={200: "Success", 400: "Invalid payload", 403: "Unauthorized"},
+        responses={
+            200: "Success",
+            400: "Invalid payload",
+            403: "Unauthorized"
+        },
     )
     @login_required
     def post(self):
-        """
-        Buys a product.
-        """
+        """Buys a product."""
         # Get the current user ROLE
         user = User.query.filter_by(username=current_user.username).first()
         user_role = check_user_role(user)
@@ -45,7 +49,9 @@ class BuyCollection(Resource):
         if user_role != "BUYER":
             return response_with(
                 resp.UNAUTHORIZED_403,
-                value={"response": "You are not authorized to perform this action"},
+                value={
+                    "response": "You are not authorized to perform this action"
+                },
             )
 
         # validate the payload
@@ -90,24 +96,24 @@ class DepositCollection(Resource):
     )
     @login_required
     def post(self):
-        """
-        Deposit coin amount.
-        """
+        """Deposit coin amount."""
         user = User.query.filter_by(username=current_user.username).first()
         user_role = check_user_role(user)
         if user_role != "BUYER":
             return response_with(
                 resp.UNAUTHORIZED_403,
-                value={"response": "You are not authorized to perform this action"},
+                value={
+                    "response": "You are not authorized to perform this action"
+                },
             )
 
         payload = request.get_json()
         deposit = deposit_amount(payload, user)
         if deposit:
-            return response_with(
-                resp.SUCCESS_201, value={"response": "Deposit successful"}
-            )
-        return response_with(resp.BAD_REQUEST_400, value={"response": "User not found"})
+            return response_with(resp.SUCCESS_201,
+                                 value={"response": "Deposit successful"})
+        return response_with(resp.BAD_REQUEST_400,
+                             value={"response": "User not found"})
 
 
 @api.route("/reset")
@@ -132,23 +138,22 @@ class ResetCollection(Resource):
     )
     @login_required
     def post(self):
-        """
-        Reset deposit amount to 0.
-        """
+        """Reset deposit amount to 0."""
         # Get the current user ROLE
         user = User.query.filter_by(username=current_user.username).first()
         user_role = check_user_role(user)
         if user_role != "BUYER":
             return response_with(
                 resp.UNAUTHORIZED_403,
-                value={"message": "You are not authorized to perform this action"},
+                value={
+                    "message": "You are not authorized to perform this action"
+                },
             )
 
         reset = reset_deposit(user)
         if reset:
             return response_with(
-                resp.SUCCESS_201, value={"response": "Deposit reset successfully"}
-            )
-        return response_with(
-            resp.BAD_REQUEST_400, value={"response": "Deposit reset failed"}
-        )
+                resp.SUCCESS_201,
+                value={"response": "Deposit reset successfully"})
+        return response_with(resp.BAD_REQUEST_400,
+                             value={"response": "Deposit reset failed"})
