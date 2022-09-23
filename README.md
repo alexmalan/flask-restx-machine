@@ -74,6 +74,7 @@ It is assumed that:
         DATABASE_PORT=
         DATABASE_HOST=
         SECRET_KEY=
+        TEST_DATABASE_NAME=
         ```
 
 ## Migrate on data model changes
