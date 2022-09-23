@@ -19,6 +19,7 @@
 
 ### Static analysis
 - Static code analysis used: https://deepsource.io/gh/
+![Screenshot 2022-09-23 at 19 01 33](https://user-images.githubusercontent.com/19578866/192003738-d0e83172-1fa2-482d-8b16-2588da7b028c.png)
 
 ### Pylint
 - Pylint used to maintain code quality;
