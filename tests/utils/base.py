@@ -45,7 +45,6 @@ class BaseTestCase(unittest.TestCase):
         -   user_id=101;
         -   user_id=102;
         """
-
         # Save user 0 - BUYER
         user_dict = dict(
             id=100,
