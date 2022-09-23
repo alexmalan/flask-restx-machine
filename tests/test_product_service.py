@@ -10,9 +10,7 @@ from tests.utils.base import BaseTestCase
 
 
 class TestProductController(BaseTestCase):
-    """
-    Tests for products
-    """
+    """Tests for products"""
 
     #######################################################
     # GET

@@ -8,14 +8,10 @@ from apps.api import blueprint, models
 
 
 class BaseTestCase(unittest.TestCase):
-    """
-    Base test class
-    """
+    """Base test class"""
 
     def setUp(self):
-        """
-        Set up the test environment
-        """
+        """Set up the test environment"""
         self.app = create_app("testing")
         self.app.register_blueprint(blueprint)
         self.app_context = self.app.app_context()
@@ -25,9 +21,7 @@ class BaseTestCase(unittest.TestCase):
         self.generic_setup()
 
     def tearDown(self):
-        """
-        Tear down the test environment
-        """
+        """Tear down the test environment"""
         db.session.remove()
         db.drop_all()
         self.app_context.pop()
