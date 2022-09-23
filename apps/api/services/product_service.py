@@ -1,6 +1,4 @@
-"""
-Product related functions - services
-"""
+"""Product related functions - services"""
 from apps.api.models import Product
 from apps.extensions import db
 
@@ -8,9 +6,7 @@ from .user_service import check_user_role
 
 
 def list_products():
-    """
-    List products
-    """
+    """List products"""
     return Product.query.all()
 
 

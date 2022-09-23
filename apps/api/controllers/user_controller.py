@@ -1,6 +1,4 @@
-"""
-User controller
-"""
+"""User controller"""
 from flask import request
 from flask_login import current_user, login_required, login_user, logout_user
 from flask_restx import Resource
@@ -37,9 +35,7 @@ class UserRegisterCollection(Resource):
     )
     @api.expect(_user)
     def post(self):
-        """
-        Register User
-        """
+        """Register User"""
         payload = request.get_json()
         register = register_user(payload)
         if register:
@@ -66,9 +62,7 @@ class UserLoginCollection(Resource):
 
     @login_manager.user_loader
     def load_user(user_id):
-        """
-        Check if user is logged in on every page load.
-        """
+        """Check if user is logged in on every page load."""
         return User.query.get(int(user_id))
 
     @api.doc(
@@ -81,9 +75,7 @@ class UserLoginCollection(Resource):
     )
     @api.expect(_user)
     def post(self):
-        """
-        Login user.
-        """
+        """Login user."""
         if current_user.is_authenticated:
             return response_with(
                 resp.BAD_REQUEST_400,
@@ -113,9 +105,7 @@ class UserLoginCollection(Resource):
         },
     )
     def get(self):
-        """
-        Returns user
-        """
+        """Returns user"""
         if current_user.is_anonymous or not current_user.is_authenticated:
             return response_with(
                 resp.BAD_REQUEST_400, value={"response": "No user logged in"}
@@ -147,9 +137,7 @@ class UserLogoutCollection(Resource):
     )
     @login_required
     def post(self):
-        """
-        Logout user.
-        """
+        """Logout user."""
         log_status = logout_user()
         if log_status:
             return response_with(
@@ -181,9 +169,7 @@ class UserDeleteCollection(Resource):
     )
     @login_required
     def delete(self):
-        """
-        Remove current user from the system
-        """
+        """Remove current user from the system"""
         user = User.query.filter_by(username=current_user.username).first()
 
         if user:

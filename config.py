@@ -1,6 +1,4 @@
-"""
-Flask configuration.
-"""
+"""Flask configuration."""
 from os import environ, path
 
 from dotenv import load_dotenv
@@ -18,9 +16,7 @@ load_dotenv(path.join(basedir, dotenv_file))
 
 
 class Config:
-    """
-    Configuration class.
-    """
+    """Configuration class."""
 
     DEBUG = False
     TESTING = False
@@ -38,17 +34,13 @@ class Config:
 
 
 class DevelopmentConfig(Config):
-    """
-    Development configuration class.
-    """
+    """Development configuration class."""
 
     SECRET_KEY = environ.get("SECRET_KEY")
 
 
 class TestConfig(Config):
-    """
-    Testing configuration class.
-    """
+    """Testing configuration class."""
 
     TESTING = True
     SECRET_KEY = environ.get("SECRET_KEY")

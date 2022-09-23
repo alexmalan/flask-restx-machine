@@ -1,6 +1,4 @@
-"""
-Product related endpoints
-"""
+"""Product related endpoints"""
 
 from flask import request
 from flask_login import current_user, login_required
@@ -40,9 +38,7 @@ class ProductCollection(Resource):
     )
     @login_required
     def get(self):
-        """
-        Returns products.
-        """
+        """Returns products."""
         products = list_products()
 
         if products:
@@ -62,9 +58,7 @@ class ProductCollection(Resource):
     )
     @login_required
     def post(self):
-        """
-        Creates a new product.
-        """
+        """Creates a new product."""
         user = User.query.filter_by(username=current_user.username).first()
 
         user_role = check_user_role(user)
@@ -93,9 +87,7 @@ class ProductCollection(Resource):
     )
     @login_required
     def put(self):
-        """
-        Update a product.
-        """
+        """Update a product."""
         user = User.query.filter_by(username=current_user.username).first()
         user_role = check_user_role(user)
         if user_role != "SELLER":
@@ -127,9 +119,7 @@ class ProductCollection(Resource):
     )
     @login_required
     def delete(self):
-        """
-        Returns product details
-        """
+        """Returns product details"""
         user = User.query.filter_by(username=current_user.username).first()
         user_role = check_user_role(current_user)
 

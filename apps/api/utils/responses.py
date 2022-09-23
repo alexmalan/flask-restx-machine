@@ -1,6 +1,4 @@
-"""
-Responses definitions
-"""
+"""Responses definitions"""
 
 from flask import jsonify, make_response
 

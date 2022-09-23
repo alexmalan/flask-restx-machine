@@ -1,14 +1,10 @@
-"""
-User related data transfer object
-"""
+"""User related data transfer object"""
 
 from flask_restx import Namespace, fields
 
 
 class UserDto:
-    """
-    User data transfer object definitions
-    """
+    """User data transfer object definitions"""
 
     api = Namespace("user", description="User related operations")
 

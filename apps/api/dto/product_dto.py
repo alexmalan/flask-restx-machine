@@ -1,14 +1,10 @@
-"""
-Product related data transfer object
-"""
+"""Product related data transfer object"""
 
 from flask_restx import Namespace, fields
 
 
 class ProductDto:
-    """
-    Product data transfer object definitions
-    """
+    """Product data transfer object definitions"""
 
     api = Namespace("product", description="Product related operations")
 

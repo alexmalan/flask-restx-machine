@@ -1,6 +1,4 @@
-"""
-Audit base class related model
-"""
+"""Audit base class related model"""
 
 from apps.extensions import db
 

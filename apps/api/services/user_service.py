@@ -1,6 +1,4 @@
-"""
-Product related functions - services
-"""
+"""Product related functions - services"""
 
 from apps.api.models import User
 from apps.extensions import bcrypt, db

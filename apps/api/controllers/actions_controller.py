@@ -1,6 +1,4 @@
-"""
-Action related endpoints
-"""
+"""Action related endpoints"""
 
 from flask import request
 from flask_login import current_user, login_required
@@ -34,9 +32,7 @@ class BuyCollection(Resource):
     )
     @login_required
     def post(self):
-        """
-        Buys a product.
-        """
+        """Buys a product."""
         # Get the current user ROLE
         user = User.query.filter_by(username=current_user.username).first()
         user_role = check_user_role(user)
@@ -90,9 +86,7 @@ class DepositCollection(Resource):
     )
     @login_required
     def post(self):
-        """
-        Deposit coin amount.
-        """
+        """Deposit coin amount."""
         user = User.query.filter_by(username=current_user.username).first()
         user_role = check_user_role(user)
         if user_role != "BUYER":
@@ -132,9 +126,7 @@ class ResetCollection(Resource):
     )
     @login_required
     def post(self):
-        """
-        Reset deposit amount to 0.
-        """
+        """Reset deposit amount to 0."""
         # Get the current user ROLE
         user = User.query.filter_by(username=current_user.username).first()
         user_role = check_user_role(user)
