@@ -1,6 +1,4 @@
-"""
-Actions tests
-"""
+"""Actions tests"""
 from apps.api.models import Product, User
 from apps.api.services import buy_product, deposit_amount, reset_deposit
 from tests.utils.base import BaseTestCase

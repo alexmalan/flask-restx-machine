@@ -1,6 +1,4 @@
-"""
-Products tests
-"""
+"""Products tests"""
 from apps.api.models import Product, User
 from apps.api.services import (
     create_product,
