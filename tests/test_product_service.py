@@ -1,7 +1,11 @@
 """Products tests"""
 from apps.api.models import Product, User
-from apps.api.services import (create_product, delete_product, list_products,
-                               update_product)
+from apps.api.services import (
+    create_product,
+    delete_product,
+    list_products,
+    update_product,
+)
 from tests.utils.base import BaseTestCase
 
 
@@ -66,7 +70,8 @@ class TestProductService(BaseTestCase):
 
         self.assertEqual(user.role.value, "SELLER")
         self.assertEqual(product.productName, product_dict["productName"])
-        self.assertEqual(product.amountAvailable, product_dict["amountAvailable"])
+        self.assertEqual(product.amountAvailable,
+                         product_dict["amountAvailable"])
         self.assertEqual(product.cost, product_dict["cost"])
         self.assertEqual(product.sellerId, product_dict["sellerId"])
         self.assertTrue(product)
@@ -90,7 +95,8 @@ class TestProductService(BaseTestCase):
 
         self.assertEqual(user.role.value, "SELLER")
         self.assertEqual(product.productName, product_dict["productName"])
-        self.assertEqual(product.amountAvailable, product_dict["amountAvailable"])
+        self.assertEqual(product.amountAvailable,
+                         product_dict["amountAvailable"])
         self.assertEqual(product.cost, product_dict["cost"])
         self.assertEqual(product.sellerId, product_dict["sellerId"])
         self.assertTrue(product)
@@ -117,7 +123,8 @@ class TestProductService(BaseTestCase):
 
         self.assertEqual(user.role.value, "SELLER")
         self.assertEqual(product.productName, product_dict["productName"])
-        self.assertEqual(product.amountAvailable, product_dict["amountAvailable"])
+        self.assertEqual(product.amountAvailable,
+                         product_dict["amountAvailable"])
         self.assertEqual(product.cost, product_dict["cost"])
         self.assertEqual(product.sellerId, product_dict["sellerId"])
         self.assertTrue(product)
@@ -146,7 +153,8 @@ class TestProductService(BaseTestCase):
 
         self.assertEqual(user.role.value, "SELLER")
         self.assertEqual(product.productName, product_dict["productName"])
-        self.assertEqual(product.amountAvailable, product_dict["amountAvailable"])
+        self.assertEqual(product.amountAvailable,
+                         product_dict["amountAvailable"])
         self.assertEqual(product.cost, product_dict["cost"])
         self.assertEqual(product.sellerId, product_dict["sellerId"])
         self.assertTrue(product)
@@ -160,7 +168,8 @@ class TestProductService(BaseTestCase):
         )
         updated = update_product(new_payload, user)
         self.assertEqual(updated.productName, new_payload["productName"])
-        self.assertEqual(updated.amountAvailable, new_payload["amountAvailable"])
+        self.assertEqual(updated.amountAvailable,
+                         new_payload["amountAvailable"])
         self.assertEqual(updated.cost, new_payload["cost"])
         self.assertEqual(updated.sellerId, user.id)
 
@@ -179,7 +188,8 @@ class TestProductService(BaseTestCase):
 
         self.assertEqual(user.role.value, "SELLER")
         self.assertEqual(product.productName, product_dict["productName"])
-        self.assertEqual(product.amountAvailable, product_dict["amountAvailable"])
+        self.assertEqual(product.amountAvailable,
+                         product_dict["amountAvailable"])
         self.assertEqual(product.cost, product_dict["cost"])
         self.assertEqual(product.sellerId, product_dict["sellerId"])
         self.assertTrue(product)

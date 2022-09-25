@@ -52,6 +52,6 @@ class TestConfig(Config):
     PRESERVE_CONTEXT_ON_EXCEPTION = False
 
 
-config_by_name = dict(
-    development=DevelopmentConfig, default=DevelopmentConfig, testing=TestConfig
-)
+config_by_name = dict(development=DevelopmentConfig,
+                      default=DevelopmentConfig,
+                      testing=TestConfig)

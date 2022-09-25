@@ -41,8 +41,8 @@ class UserRegisterCollection(Resource):
         register = register_user(payload)
         if register:
             return response_with(
-                resp.SUCCESS_201, value={"response": "User created successfully"}
-            )
+                resp.SUCCESS_201,
+                value={"response": "User created successfully"})
         return response_with(
             resp.BAD_REQUEST_400,
             value={"response": "User already exists or invalid input"},
@@ -82,7 +82,8 @@ class UserLoginCollection(Resource):
             return response_with(
                 resp.BAD_REQUEST_400,
                 value={
-                    "response": "There is already an active session using your account"
+                    "response":
+                    "There is already an active session using your account"
                 },
             )
         payload = request.get_json()
@@ -97,9 +98,8 @@ class UserLoginCollection(Resource):
         if user:
             if bcrypt.check_password_hash(user.password, payload["password"]):
                 login_user(user)
-                return response_with(
-                    resp.SUCCESS_200, value={"response": "User logged in"}
-                )
+                return response_with(resp.SUCCESS_200,
+                                     value={"response": "User logged in"})
         return response_with(
             resp.BAD_REQUEST_400,
             value={"response": "Invalid username or password"},
@@ -115,12 +115,13 @@ class UserLoginCollection(Resource):
     def get(self):
         """Returns user"""
         if current_user.is_anonymous or not current_user.is_authenticated:
-            return response_with(
-                resp.BAD_REQUEST_400, value={"response": "No user logged in"}
-            )
+            return response_with(resp.BAD_REQUEST_400,
+                                 value={"response": "No user logged in"})
         return response_with(
             resp.SUCCESS_200,
-            value={"response": f"{current_user.username} : {current_user.role}"},
+            value={
+                "response": f"{current_user.username} : {current_user.role}"
+            },
         )
 
 
@@ -148,12 +149,10 @@ class UserLogoutCollection(Resource):
         """Logout user."""
         log_status = logout_user()
         if log_status:
-            return response_with(
-                resp.SUCCESS_200, value={"response": "User logged out"}
-            )
-        return response_with(
-            resp.BAD_REQUEST_400, value={"response": "No user logged in"}
-        )
+            return response_with(resp.SUCCESS_200,
+                                 value={"response": "User logged out"})
+        return response_with(resp.BAD_REQUEST_400,
+                             value={"response": "No user logged in"})
 
 
 @api.route("/remove")
@@ -186,5 +185,7 @@ class UserDeleteCollection(Resource):
 
             logout_user()
 
-            return response_with(resp.SUCCESS_200, value={"response": "User Removed"})
-        return response_with(resp.BAD_REQUEST_400, value={"response": "User not found"})
+            return response_with(resp.SUCCESS_200,
+                                 value={"response": "User Removed"})
+        return response_with(resp.BAD_REQUEST_400,
+                             value={"response": "User not found"})
