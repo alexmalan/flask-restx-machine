@@ -50,8 +50,9 @@ def update_product(payload=None, user=None):
     if payload is None or not isinstance(payload, dict):
         return None
 
-    product = Product.query.filter_by(id=payload["product_id"],
-                                      sellerId=user.id).first()
+    product = Product.query.filter_by(
+        id=payload["product_id"], sellerId=user.id
+    ).first()
     if product:
         if payload.get("productName"):
             if not isinstance(payload["productName"], str):
@@ -88,8 +89,9 @@ def delete_product(payload=None, user=None):
     if payload is None or not isinstance(payload, dict):
         return None
 
-    product = Product.query.filter_by(id=payload["product_id"],
-                                      sellerId=user.id).first()
+    product = Product.query.filter_by(
+        id=payload["product_id"], sellerId=user.id
+    ).first()
 
     if product:
         db.session.delete(product)

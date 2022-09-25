@@ -6,12 +6,8 @@ from flask_restx import Resource
 
 from apps.api.dto import ActionsDto, ProductDto
 from apps.api.models import User
-from apps.api.services import (
-    buy_product,
-    check_user_role,
-    deposit_amount,
-    reset_deposit,
-)
+from apps.api.services import (buy_product, check_user_role, deposit_amount,
+                               reset_deposit)
 from apps.api.utils import response_with
 from apps.api.utils import responses as resp
 
@@ -32,11 +28,7 @@ class BuyCollection(Resource):
 
     @api.doc(
         "Buy action",
-        responses={
-            200: "Success",
-            400: "Invalid payload",
-            403: "Unauthorized"
-        },
+        responses={200: "Success", 400: "Invalid payload", 403: "Unauthorized"},
     )
     @login_required
     def post(self):
@@ -49,9 +41,7 @@ class BuyCollection(Resource):
         if user_role != "BUYER":
             return response_with(
                 resp.UNAUTHORIZED_403,
-                value={
-                    "response": "You are not authorized to perform this action"
-                },
+                value={"response": "You are not authorized to perform this action"},
             )
 
         # validate the payload
@@ -102,18 +92,19 @@ class DepositCollection(Resource):
         if user_role != "BUYER":
             return response_with(
                 resp.UNAUTHORIZED_403,
-                value={
-                    "response": "You are not authorized to perform this action"
-                },
+                value={"response": "You are not authorized to perform this action"},
             )
 
         payload = request.get_json()
         deposit = deposit_amount(payload, user)
         if deposit:
-            return response_with(resp.SUCCESS_201,
-                                 value={"response": "Deposit successful"})
-        return response_with(resp.BAD_REQUEST_400,
-                             value={"response": "User not found"})
+            return response_with(
+                resp.SUCCESS_201, value={"response": "Deposit successful"}
+            )
+        return response_with(
+            resp.BAD_REQUEST_400,
+            value={"response": "User not found or invalid coin type inserted"},
+        )
 
 
 @api.route("/reset")
@@ -145,15 +136,14 @@ class ResetCollection(Resource):
         if user_role != "BUYER":
             return response_with(
                 resp.UNAUTHORIZED_403,
-                value={
-                    "message": "You are not authorized to perform this action"
-                },
+                value={"message": "You are not authorized to perform this action"},
             )
 
         reset = reset_deposit(user)
         if reset:
             return response_with(
-                resp.SUCCESS_201,
-                value={"response": "Deposit reset successfully"})
-        return response_with(resp.BAD_REQUEST_400,
-                             value={"response": "Deposit reset failed"})
+                resp.SUCCESS_201, value={"response": "Deposit reset successfully"}
+            )
+        return response_with(
+            resp.BAD_REQUEST_400, value={"response": "Deposit reset failed"}
+        )

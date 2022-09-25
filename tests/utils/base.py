@@ -5,6 +5,7 @@ import pytest
 
 from app import create_app, db
 from apps.api import blueprint, models
+from apps.extensions import bcrypt
 
 
 class BaseTestCase(unittest.TestCase):
@@ -40,11 +41,14 @@ class BaseTestCase(unittest.TestCase):
         -   user_id=101;
         -   user_id=102;
         """
+        # Saving password in hash format
+        hash_pass = bcrypt.generate_password_hash("Test1234")
+
         # Save user 0 - BUYER
         user_dict = dict(
             id=100,
-            username="user0_buyer",
-            password="Test1234",
+            username="user0_buyer@gmail.com",
+            password=hash_pass,
             role="BUYER",
         )
         user = models.User(**user_dict)
@@ -54,8 +58,8 @@ class BaseTestCase(unittest.TestCase):
         # Save user 1 - SELLER
         user_dict = dict(
             id=101,
-            username="user1_seller",
-            password="Test1423",
+            username="user1_seller@gmail.com",
+            password=hash_pass,
             role="SELLER",
         )
         user = models.User(**user_dict)
@@ -65,8 +69,8 @@ class BaseTestCase(unittest.TestCase):
         # Save user 2 - SELLER
         user_dict = dict(
             id=102,
-            username="user2_seller",
-            password="Test6543",
+            username="user2_seller@gmail.com",
+            password=hash_pass,
             role="SELLER",
         )
         user = models.User(**user_dict)

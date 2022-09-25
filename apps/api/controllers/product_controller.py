@@ -6,13 +6,8 @@ from flask_restx import Resource
 
 from apps.api.dto import ProductDto
 from apps.api.models import User
-from apps.api.services import (
-    check_user_role,
-    create_product,
-    delete_product,
-    list_products,
-    update_product,
-)
+from apps.api.services import (check_user_role, create_product, delete_product,
+                               list_products, update_product)
 from apps.api.utils import response_with
 from apps.api.utils import responses as resp
 
@@ -48,10 +43,10 @@ class ProductCollection(Resource):
 
         if products:
             response = api.marshal(products, _product)
-            return response_with(resp.SUCCESS_200,
-                                 value={"response": response})
-        return response_with(resp.BAD_REQUEST_400,
-                             value={"response": "No products found"})
+            return response_with(resp.SUCCESS_200, value={"response": response})
+        return response_with(
+            resp.BAD_REQUEST_400, value={"response": "No products found"}
+        )
 
     @api.doc(
         "Create product",
@@ -70,9 +65,7 @@ class ProductCollection(Resource):
         if user_role != "SELLER":
             return response_with(
                 resp.UNAUTHORIZED_403,
-                value={
-                    "message": "You are not authorized to perform this action"
-                },
+                value={"message": "You are not authorized to perform this action"},
             )
 
         payload = request.get_json()
@@ -80,10 +73,8 @@ class ProductCollection(Resource):
             product = create_product(payload, user)
             if product:
                 response = api.marshal(product, _product)
-                return response_with(resp.SUCCESS_201,
-                                     value={"response": response})
-        return response_with(resp.BAD_REQUEST_400,
-                             value={"response": "No user found"})
+                return response_with(resp.SUCCESS_201, value={"response": response})
+        return response_with(resp.BAD_REQUEST_400, value={"response": "No user found"})
 
     @api.doc(
         "Update product",
@@ -102,22 +93,18 @@ class ProductCollection(Resource):
         if user_role != "SELLER":
             return response_with(
                 resp.UNAUTHORIZED_403,
-                value={
-                    "message": "You are not authorized to perform this action"
-                },
+                value={"message": "You are not authorized to perform this action"},
             )
 
         payload = request.get_json()
         product = update_product(payload, user)
         if product:
             response = api.marshal(product, _product)
-            return response_with(resp.SUCCESS_201,
-                                 value={"response": response})
+            return response_with(resp.SUCCESS_201, value={"response": response})
         return response_with(
             resp.INVALID_INPUT_422,
             value={
-                "response":
-                "Product not found or you are not the owner of this product"
+                "response": "Product not found or you are not the owner of this product"
             },
         )
 
@@ -139,9 +126,7 @@ class ProductCollection(Resource):
         if user_role != "SELLER":
             return response_with(
                 resp.UNAUTHORIZED_403,
-                value={
-                    "message": "You are not authorized to perform this action"
-                },
+                value={"message": "You are not authorized to perform this action"},
             )
 
         payload = request.get_json()
@@ -149,12 +134,11 @@ class ProductCollection(Resource):
 
         if product:
             return response_with(
-                resp.SUCCESS_200,
-                value={"data": "Product deleted successfully"})
+                resp.SUCCESS_200, value={"data": "Product deleted successfully"}
+            )
         return response_with(
             resp.INVALID_INPUT_422,
             value={
-                "response":
-                "Product not found or you are not the owner of this product"
+                "response": "Product not found or you are not the owner of this product"
             },
         )

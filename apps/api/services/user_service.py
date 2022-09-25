@@ -1,5 +1,7 @@
 """Product related functions - services"""
 
+from email_validator import validate_email
+
 from apps.api.models import User
 from apps.extensions import bcrypt, db
 
@@ -26,6 +28,11 @@ def register_user(payload):
     :param dict payload: Request data payload
     """
     if payload is None or not isinstance(payload, dict):
+        return False
+
+    try:
+        validate_email(payload["username"])
+    except Exception:
         return False
 
     user = User.query.filter_by(username=payload["username"]).first()

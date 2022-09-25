@@ -4,7 +4,7 @@ from apps.api.services import buy_product, deposit_amount, reset_deposit
 from tests.utils.base import BaseTestCase
 
 
-class TestActionController(BaseTestCase):
+class TestActionService(BaseTestCase):
     """Tests for actions"""
 
     # #######################################################

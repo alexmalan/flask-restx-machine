@@ -26,23 +26,11 @@ MISSING_PARAMETERS_422 = {
     "message": "Missing parameters.",
 }
 
-BAD_REQUEST_400 = {
-    "http_code": 400,
-    "code": "badRequest",
-    "message": "Bad request"
-}
+BAD_REQUEST_400 = {"http_code": 400, "code": "badRequest", "message": "Bad request"}
 
-SERVER_ERROR_500 = {
-    "http_code": 500,
-    "code": "serverError",
-    "message": "Server error"
-}
+SERVER_ERROR_500 = {"http_code": 500, "code": "serverError", "message": "Server error"}
 
-SERVER_ERROR_404 = {
-    "http_code": 404,
-    "code": "notFound",
-    "message": "Not found"
-}
+SERVER_ERROR_404 = {"http_code": 404, "code": "notFound", "message": "Not found"}
 
 UNAUTHORIZED_403 = {
     "http_code": 403,
@@ -57,11 +45,7 @@ SUCCESS_201 = {"http_code": 201, "code": "success"}
 SUCCESS_204 = {"http_code": 204, "code": "success"}
 
 
-def response_with(response,
-                  value=None,
-                  error=None,
-                  headers=None,
-                  pagination=None):
+def response_with(response, value=None, error=None, headers=None, pagination=None):
     """
     Make response from Flask library to create standard responses for APIs.
 

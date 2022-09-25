@@ -108,7 +108,7 @@ It is assumed that:
 
 ## Run
 
--   Application can run directly from cmd using fallowing commands:
+-   Application can run directly from cmd using following commands:
     - Using python run
         - Windows
         ```bash
@@ -135,7 +135,7 @@ It is assumed that:
         python3 app.py test
         ```
     - Method2 - Using pytest:
-        - For fallowing options are available:
+        - For following options are available:
             - `-v` - to have verbose tests
             - `-s` - to see logging from tests
       
