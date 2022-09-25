@@ -16,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"username\": \"usertest\",\n    \"password\": \"1234\",\n    \"role\": \"SELLER\"\n}\n\n",
+							"raw": "{\n    \"username\": \"user@gmail.com\",\n    \"password\": \"1234\",\n    \"role\": \"SELLER\"\n}\n\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -49,7 +49,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"username\": \"usertest\",\n    \"password\": \"1234\"\n}",
+							"raw": "{\n    \"username\": \"user@gmail.com\",\n    \"password\": \"1234\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -182,7 +182,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"amountAvailable\": 12,\n    \"cost\": 5,\n    \"productName\": \"Coke Zero\"\n}",
+							"raw": "{\n    \"amountAvailable\": 112,\n    \"cost\": 25,\n    \"productName\": \"Sprite Zero\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -248,7 +248,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"product_id\": 1\n}",
+							"raw": "{\n    \"product_id\": 2\n}",
 							"options": {
 								"raw": {
 									"language": "json"
