@@ -24,13 +24,16 @@ class TestUserController(BaseTestCase):
 
         self.assertEqual(resp.status_code, 201)
         self.assertEqual(resp.get_json()["code"], "success")
-        self.assertEqual(resp.get_json()["response"], "User created successfully")
+        self.assertEqual(resp.get_json()["response"],
+                         "User created successfully")
 
-        check_register = User.query.filter_by(username=user_dict["username"]).first()
+        check_register = User.query.filter_by(
+            username=user_dict["username"]).first()
 
         self.assertEqual(check_register.username, user_dict["username"])
         self.assertEqual(
-            bcrypt.check_password_hash(check_register.password, user_dict["password"]),
+            bcrypt.check_password_hash(check_register.password,
+                                       user_dict["password"]),
             True,
         )
 
@@ -46,9 +49,8 @@ class TestUserController(BaseTestCase):
 
         self.assertEqual(resp.status_code, 400)
         self.assertEqual(resp.get_json()["code"], "badRequest")
-        self.assertEqual(
-            resp.get_json()["response"], "User already exists or invalid input"
-        )
+        self.assertEqual(resp.get_json()["response"],
+                         "User already exists or invalid input")
 
     def test_user_login_success(self):
         """Test user login successfully"""
@@ -77,7 +79,8 @@ class TestUserController(BaseTestCase):
 
         self.assertEqual(resp.status_code, 400)
         self.assertEqual(resp.get_json()["code"], "badRequest")
-        self.assertEqual(resp.get_json()["response"], "Invalid username or password")
+        self.assertEqual(resp.get_json()["response"],
+                         "Invalid username or password")
 
     def test_user_logout_success(self):
         """Test user logout successfully"""
@@ -162,9 +165,7 @@ class TestUserController(BaseTestCase):
         self.assertEqual(resp.get_json()["code"], "success")
         self.assertEqual(resp.get_json()["response"], "User logged in")
 
-        resp = self.client.delete(
-            f"/api/user/remove",
-        )
+        resp = self.client.delete(f"/api/user/remove", )
 
         self.assertEqual(resp.status_code, 200)
         self.assertEqual(resp.get_json()["code"], "success")
@@ -175,9 +176,7 @@ class TestUserController(BaseTestCase):
 
     def test_user_remove_while_no_logged_in_user(self):
         """Test removing function without being logged in"""
-        resp = self.client.delete(
-            f"/api/user/remove",
-        )
+        resp = self.client.delete(f"/api/user/remove", )
 
         self.assertEqual(resp.status_code, 401)
         self.assertEqual(
