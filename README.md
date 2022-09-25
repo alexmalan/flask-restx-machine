@@ -18,7 +18,7 @@
 ## Code quality
 
 ### Static analysis
-- Static code analysis used: https://deepsource.io/gh/
+- Static code analysis used: https://deepsource.io/
 ![Screenshot 2022-09-23 at 19 01 33](https://user-images.githubusercontent.com/19578866/192003738-d0e83172-1fa2-482d-8b16-2588da7b028c.png)
 
 ### Pylint
