@@ -17,7 +17,7 @@ class TestUserController(BaseTestCase):
         user_dict = {"username": "usertest@gmail.com", "password": "Test1234"}
 
         resp = self.client.post(
-            f"/api/user/register",
+            "/api/user/register",
             content_type="application/json",
             data=json.dumps(user_dict),
         )
@@ -39,7 +39,7 @@ class TestUserController(BaseTestCase):
         user_dict = {"username": 2, "password": "Test1234"}
 
         resp = self.client.post(
-            f"/api/user/register",
+            "/api/user/register",
             content_type="application/json",
             data=json.dumps(user_dict),
         )
@@ -56,7 +56,7 @@ class TestUserController(BaseTestCase):
         user_dict = {"username": user[0].username, "password": "Test1234"}
 
         resp = self.client.post(
-            f"/api/user/login",
+            "/api/user/login",
             content_type="application/json",
             data=json.dumps(user_dict),
         )
@@ -70,7 +70,7 @@ class TestUserController(BaseTestCase):
         user_dict = {"username": 234, "password": "Test1234"}
 
         resp = self.client.post(
-            f"/api/user/login",
+            "/api/user/login",
             content_type="application/json",
             data=json.dumps(user_dict),
         )
@@ -85,7 +85,7 @@ class TestUserController(BaseTestCase):
         user_dict = {"username": user[0].username, "password": "Test1234"}
 
         resp = self.client.post(
-            f"/api/user/login",
+            "/api/user/login",
             content_type="application/json",
             data=json.dumps(user_dict),
         )
@@ -95,7 +95,7 @@ class TestUserController(BaseTestCase):
         self.assertEqual(resp.get_json()["response"], "User logged in")
 
         resp = self.client.post(
-            f"/api/user/logout",
+            "/api/user/logout",
             content_type="application/json",
         )
 
@@ -106,7 +106,7 @@ class TestUserController(BaseTestCase):
     def test_user_logout_no_user_logged_in(self):
         """Test user logout with no user logged in"""
         resp = self.client.post(
-            f"/api/user/logout",
+            "/api/user/logout",
             content_type="application/json",
         )
 
@@ -122,7 +122,7 @@ class TestUserController(BaseTestCase):
         user_dict = {"username": user[0].username, "password": "Test1234"}
 
         resp = self.client.post(
-            f"/api/user/login",
+            "/api/user/login",
             content_type="application/json",
             data=json.dumps(user_dict),
         )
@@ -131,7 +131,7 @@ class TestUserController(BaseTestCase):
         self.assertEqual(resp.get_json()["code"], "success")
         self.assertEqual(resp.get_json()["response"], "User logged in")
 
-        resp = self.client.get(f"/api/user/login")
+        resp = self.client.get("/api/user/login")
 
         self.assertEqual(resp.status_code, 200)
         self.assertEqual(resp.get_json()["code"], "success")
@@ -139,7 +139,7 @@ class TestUserController(BaseTestCase):
 
     def test_user_status_not_logged_in(self):
         """Test check status on user not logged in"""
-        resp = self.client.get(f"/api/user/login")
+        resp = self.client.get("/api/user/login")
 
         self.assertEqual(resp.status_code, 400)
         self.assertEqual(resp.get_json()["code"], "badRequest")
@@ -153,7 +153,7 @@ class TestUserController(BaseTestCase):
         user_dict = {"username": initial_username, "password": "Test1234"}
 
         resp = self.client.post(
-            f"/api/user/login",
+            "/api/user/login",
             content_type="application/json",
             data=json.dumps(user_dict),
         )
@@ -163,7 +163,7 @@ class TestUserController(BaseTestCase):
         self.assertEqual(resp.get_json()["response"], "User logged in")
 
         resp = self.client.delete(
-            f"/api/user/remove",
+            "/api/user/remove",
         )
 
         self.assertEqual(resp.status_code, 200)
@@ -176,7 +176,7 @@ class TestUserController(BaseTestCase):
     def test_user_remove_while_no_logged_in_user(self):
         """Test removing function without being logged in"""
         resp = self.client.delete(
-            f"/api/user/remove",
+            "/api/user/remove",
         )
 
         self.assertEqual(resp.status_code, 401)
