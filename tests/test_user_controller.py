@@ -14,7 +14,6 @@ class TestUserController(BaseTestCase):
 
     def test_user_register_success(self):
         """Test user register successfully"""
-
         user_dict = {"username": "usertest@gmail.com", "password": "Test1234"}
 
         resp = self.client.post(
@@ -37,7 +36,6 @@ class TestUserController(BaseTestCase):
 
     def test_user_register_invalid_input(self):
         """Test user register with invalid input"""
-
         user_dict = {"username": 2, "password": "Test1234"}
 
         resp = self.client.post(
@@ -69,7 +67,6 @@ class TestUserController(BaseTestCase):
 
     def test_user_login_invalid_input(self):
         """Test user login with invalid input"""
-
         user_dict = {"username": 234, "password": "Test1234"}
 
         resp = self.client.post(
@@ -108,7 +105,6 @@ class TestUserController(BaseTestCase):
 
     def test_user_logout_no_user_logged_in(self):
         """Test user logout with no user logged in"""
-
         resp = self.client.post(
             f"/api/user/logout",
             content_type="application/json",
@@ -179,7 +175,6 @@ class TestUserController(BaseTestCase):
 
     def test_user_remove_while_no_logged_in_user(self):
         """Test removing function without being logged in"""
-
         resp = self.client.delete(
             f"/api/user/remove",
         )
