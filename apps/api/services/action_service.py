@@ -38,6 +38,12 @@ def buy_product(payload=None, user=None):
         # update the user deposit
         user.deposit -= spending
         change = user.deposit
+        change_list = []
+
+        for i in [100, 50, 20, 10, 5]:
+            while change >=i:
+                change_list.append(i)
+                change -= i
 
         try:
             db.session.commit()
@@ -45,7 +51,7 @@ def buy_product(payload=None, user=None):
             db.session.rollback()
             raise
 
-        return change, spending, product
+        return change_list, spending, product
 
 
 def deposit_amount(payload=None, user=None):

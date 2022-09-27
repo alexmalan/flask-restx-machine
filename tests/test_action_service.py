@@ -20,8 +20,12 @@ class TestActionService(BaseTestCase):
         product = Product.query.filter_by(id=payload["product_id"]).first()
 
         change, spent, product = buy_product(payload, user)
+        self.assertEqual(isinstance(change, list), True)
+
+        total_change = sum(change)
+
         self.assertEqual(product.cost * payload["quantity"], spent)
-        self.assertEqual(change, user.deposit)
+        self.assertEqual(total_change, user.deposit)
 
     def test_buy_product_wrong_user_type(self):
         """Test buy product with wrong user type - SELLER INSTEAD OF BUYER"""
