@@ -41,7 +41,7 @@ def buy_product(payload=None, user=None):
         change_list = []
 
         for i in [100, 50, 20, 10, 5]:
-            while change >=i:
+            while change >= i:
                 change_list.append(i)
                 change -= i
 
