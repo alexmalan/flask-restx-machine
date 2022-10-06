@@ -11,10 +11,6 @@
     -   Geneneric response format;
     -   Custom error handling for all response types;
 
-### Notes
-
-- I was advised to use Flask REST framework in this case so flask-restx is the main framework
-
 ## Code quality
 
 ### Static analysis
@@ -101,10 +97,15 @@ It is assumed that:
   python -m pip check
   ```
 
-## Import Postman
-- Locate the file in the root repository path: Vending Machine.postman_collection.json
-- Import process: Open Postman > File > Import > Upload Files > Choose from Computer > Import
-- You are able to test the endpoints and different scenarios and inputs
+## Postman Configuration
+
+### Library Import
+* Find the Vending Machine.postman_collection.json in the root directory
+- Open Postman
+   - File
+      - Import
+         - Upload files
+            - Open
 
 ## Run
 
