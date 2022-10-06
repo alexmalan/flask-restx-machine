@@ -37,7 +37,7 @@ It is assumed that:
 
 1. **Clone git repository**:
    ```bash
-   git clone [CLONE_LINK]
+   git clone https://github.com/alexmalan/flask-restx-machine.git
    ```
 
 2. **Create virtual environment**
@@ -79,7 +79,7 @@ It is assumed that:
 
 ## Migrate on data model changes
     
-- Run fallowing commands
+- Run following commands
     - Windows
     ```bash
     python app.py db init
