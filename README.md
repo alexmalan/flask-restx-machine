@@ -100,12 +100,31 @@ It is assumed that:
 ## Postman Configuration
 
 ### Library Import
-* Find the Vending Machine.postman_collection.json in the root directory
+* Find the product_management.postman_collection.json in the root directory
 - Open Postman
    - File
       - Import
          - Upload files
             - Open
+
+### Environment
+- In order to set the CSRF token in the environment you have to send a
+   * REGISTER request
+   * LOGIN request
+
+- In the LOGIN request there is a Cookies button
+   - Press on csrftoken
+      - Copy the value
+         - Example: csrftoken=hK82HTKSIElfvq8N4KT6bt3bS61iy9Iy;
+         - Value: hK82HTKSIElfvq8N4KT6bt3bS61iy9Iy
+
+* Environments
+   - Add
+      - Variable: csrftoken
+      - Type: default
+      - Initial value: Paste CSRFtoken value
+      - Current value: Paste CSRFtoken value
+   - Save
 
 ## Run
 
